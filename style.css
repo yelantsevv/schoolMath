@@ -9,6 +9,7 @@ body {
   -moz-user-select: none;
   -khtml-user-select: none;
   user-select: none;
+  height: 100dvh;
 }
 
 .container {
@@ -18,13 +19,14 @@ body {
   align-items: center;
   justify-content: center;
   margin-top: 2rem;
-  height: 100svh;
+  height: 100%;
+  width: 90%;
 }
 
 .primer {
   display: flex;
   font-size: 12vw;
-  gap: 2rem;
+  gap: 2vw;
   text-shadow: #00000081 4px 8px 10px;
 }
 .primer > * {
@@ -79,6 +81,12 @@ body {
 }
 .inputs {
   padding: 0.5rem 1rem;
+  width: 250px;
+  & > * {
+    margin: 0.5rem 0;
+    display: flex;
+    justify-content: space-between;
+  }
 }
 .operation {
   display: flex;
@@ -96,10 +104,10 @@ input {
 
 .btn {
   cursor: pointer;
-  padding: 0.5rem 1rem;
+  padding: 0.3rem 1rem;
   border-radius: 0.5rem;
   margin-bottom: 2rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 .settings {
   position: absolute;
