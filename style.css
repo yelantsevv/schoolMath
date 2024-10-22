@@ -3,7 +3,9 @@
   padding: 0;
   box-sizing: border-box;
   text-shadow: #00000081 4px 8px 10px;
-
+}
+body {
+  overflow: hidden;
 }
 
 .container {
@@ -45,8 +47,6 @@
     min-width: 17vw;
     background-color: rgb(255, 255, 255);
     border-radius: 20px;
-
-
   }
   :hover {
     cursor: pointer;
