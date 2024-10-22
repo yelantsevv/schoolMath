@@ -10,6 +10,36 @@
 
 <body>
 
+    <button class="btn settings">Настроить</button>
+    <form class="form">
+        <div class="inputs">
+
+            <label for="from">from:</label>
+            <input type="number" id="from" name="from" step="1" min="1" max="100" value="2" />
+            <label for="to">to:</label>
+            <input type="number" id="to" name="to" step="1" min="1" max="100" value="10" />
+        </div>
+        <div class="operation">
+            <div>
+                <input type="checkbox" id="add" checked />
+                <label for="add">+</label>
+            </div>
+            <div>
+                <input type="checkbox" id="minus" checked />
+                <label for="minus">-</label>
+            </div>
+            <div>
+                <input type="checkbox" id="multiply" checked />
+                <label for="multiply">*</label>
+            </div>
+            <div>
+                <input type="checkbox" id="divide" checked />
+                <label for="divide">/</label>
+            </div>
+        </div>
+
+        <input class="btn saveBtn" type="submit" value="Сохранить" />
+    </form>
 
     <div class="container">
         <div class="primer">
@@ -22,7 +52,10 @@
 
         <div class="rez"></div>
     </div>
-    <script src="script.js"></script>
+
+
+
+    <script type="module" src="script.js"></script>
 
 </body>
 

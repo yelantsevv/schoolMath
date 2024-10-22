@@ -4,6 +4,8 @@ const argument = document.querySelector(".argument");
 const result = document.querySelector(".result");
 const rez = document.querySelector(".rez");
 
+const start = { from: 2, to: 10, argument: ["+", "-", "*", "/"] };
+
 const random = (x, y) => Math.floor(Math.random() * (y - x + 1)) + x;
 
 const arg = {
@@ -14,14 +16,15 @@ const arg = {
 };
 
 function getArgument() {
-  const x = random(2, 10);
-  const y = random(2, 10);
-  const z = ["+", "-", "*", "/", "*"][random(0, 4)];
+  const x = random(start.from, start.to);
+  const y = random(start.from, start.to);
+  const z = start.argument[random(0, start.argument.length - 1)];
   const rez = arg[z](x, y);
   if (parseInt(rez) !== rez || rez < 0) return getArgument();
   if (z === "*" && Math.random() - 0.5 > 0) return [rez, y, "/", x];
   return [x, y, z, rez];
 }
+
 let answer;
 let r;
 function varify() {
@@ -57,7 +60,7 @@ function results() {
 }
 
 let flag = false;
-rez.addEventListener("click", (e) => {
+rez.addEventListener("mouseup", (e) => {
   if (flag) return;
   flag = true;
   if (e.target.textContent == answer) {
@@ -67,7 +70,7 @@ rez.addEventListener("click", (e) => {
       [first, second, argument, result][r].classList.remove("active");
       varify();
       results();
-    }, 2000);
+    }, 1000);
   } else {
     [first, second, argument, result][r].innerHTML = e.target.textContent;
     [first, second, argument, result][r].classList.add("error");
@@ -76,9 +79,31 @@ rez.addEventListener("click", (e) => {
       [first, second, argument, result][r].innerHTML = "";
       [first, second, argument, result][r].classList.remove("error");
       results();
-    }, 2000);
+    }, 1000);
   }
 });
 varify();
-
 results();
+// - - - - - - - - - - - -
+
+const settings = document.querySelector(".settings");
+const saveBtn = document.querySelector(".saveBtn");
+const form = document.querySelector(".form");
+
+settings.addEventListener("click", (event) => {
+  event.preventDefault();
+  form.classList.toggle("hidden");
+});
+saveBtn.addEventListener("click", (event) => {
+  event.preventDefault();
+  const [a, b, c, d, e, f] = [...event.target.parentElement];
+  start.from = +a.value;
+  start.to = +b.value;
+  start.argument = [];
+  if (c.checked) start.argument.push("+");
+  if (d.checked) start.argument.push("-");
+  if (e.checked) start.argument.push("*");
+  if (f.checked) start.argument.push("/");
+
+  form.classList.toggle("hidden");
+});
