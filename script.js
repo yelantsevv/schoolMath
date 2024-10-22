@@ -90,7 +90,7 @@ results();
 
 const settings = document.querySelector(".settings");
 const saveBtn = document.querySelector(".saveBtn");
-const form = document.querySelector(".form");
+const form = document.querySelector("form");
 
 settings.addEventListener("click", (event) => {
   event.preventDefault();
@@ -109,27 +109,6 @@ saveBtn.addEventListener("click", (event) => {
 
   form.classList.toggle("hidden");
 });
-
-window.onload = function () {
-  hideAddressBar();
-  window.addEventListener(
-    "orientationchange",
-    function () {
-      hideAddressBar();
-    },
-    false
-  );
-};
-
-function hideAddressBar() {
-  setTimeout(function () {
-    document.body.style.height = window.outerHeight + "px";
-    setTimeout(function () {
-      window.scrollTo(0, 1);
-    }, 1100);
-  }, 1000);
-  return false;
-}
 
 const counter = document.querySelector(".count");
 function count(args = true) {
