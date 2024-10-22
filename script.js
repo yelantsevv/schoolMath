@@ -70,6 +70,7 @@ rez.addEventListener("mouseup", (e) => {
       [first, second, argument, result][r].classList.remove("active");
       varify();
       results();
+      count(true);
     }, 1000);
   } else {
     [first, second, argument, result][r].innerHTML = e.target.textContent;
@@ -79,6 +80,7 @@ rez.addEventListener("mouseup", (e) => {
       [first, second, argument, result][r].innerHTML = "";
       [first, second, argument, result][r].classList.remove("error");
       results();
+      count(false);
     }, 1000);
   }
 });
@@ -108,20 +110,41 @@ saveBtn.addEventListener("click", (event) => {
   form.classList.toggle("hidden");
 });
 
-
 window.onload = function () {
   hideAddressBar();
-  window.addEventListener("orientationchange", function () {
+  window.addEventListener(
+    "orientationchange",
+    function () {
       hideAddressBar();
-  }, false);
-}
+    },
+    false
+  );
+};
 
 function hideAddressBar() {
   setTimeout(function () {
-      document.body.style.height = window.outerHeight + 'px';
-      setTimeout(function () {
-          window.scrollTo(0, 1);
-      }, 1100);
+    document.body.style.height = window.outerHeight + "px";
+    setTimeout(function () {
+      window.scrollTo(0, 1);
+    }, 1100);
   }, 1000);
   return false;
 }
+
+const counter = document.querySelector(".count");
+function count(args = true) {
+  const counts = counter.textContent;
+  if (args) {
+    localStorage.setItem("counter", +counts + 1);
+  }
+  if (!args) {
+    localStorage.setItem("counter", +counts - 1);
+  }
+  counter.textContent = localStorage.getItem("counter");
+}
+counter.textContent = localStorage.getItem("counter");
+
+counter.addEventListener("click", () => {
+  localStorage.setItem("counter", 0);
+  counter.textContent = localStorage.getItem("counter");
+});
