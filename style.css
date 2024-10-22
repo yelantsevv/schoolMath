@@ -13,6 +13,7 @@ body {
 }
 
 .container {
+  margin: 0 auto;
   font-family: Arial, sans-serif;
   display: flex;
   flex-direction: column;
@@ -116,4 +117,16 @@ input {
 }
 .hidden {
   display: none;
+}
+.count {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  width: 5rem;
+  height: 5rem;
+  background: #dfdfdf;
+  border-radius: 0 0 0 3rem;
+  font-size: 4rem;
+  text-align: center;
 }
