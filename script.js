@@ -21,7 +21,8 @@ function getArgument() {
   const z = start.argument[random(0, start.argument.length - 1)];
   const rez = arg[z](x, y);
   if (parseInt(rez) !== rez || rez < 0) return getArgument();
-  if (z === "*" && Math.random() - 0.5 > 0) return [rez, y, "/", x];
+  if (z === "*" && Math.random() - 0.5 > 0 && start.argument.includes("/"))
+    return [rez, y, "/", x];
   return [x, y, z, rez];
 }
 
