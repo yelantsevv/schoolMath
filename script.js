@@ -47,7 +47,7 @@ function results() {
       r = ["+", "-", "*", "/"];
       break;
     }
-    const randomNumber = random(1, answer + 10);
+    const randomNumber = random(answer - 10, answer + 10);
     if (r.includes(randomNumber)) continue;
     r.push(randomNumber);
   }
