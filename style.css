@@ -104,6 +104,7 @@ body {
   flex-direction: column;
   gap: 10px;
 }
+
 input {
   font-size: 2rem;
 }
