@@ -120,9 +120,11 @@ input {
   background: #dcdcdc81;
   top: 0;
 }
+
 .hidden {
   display: none;
 }
+
 .count {
   position: absolute;
   z-index: 2;
