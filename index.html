@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Math 3-class</title>
+</head>
+
+<body>
+    <div>
+
+        <button class="btn settings">Настроить</button>
+        <div class="count"></div>
+    </div>
+    <form class="form hidden" id="regForm" action="/registration" method="post">
+        <div class="inputs">
+            <div>
+
+                <label for="from">from:</label>
+                <input type="number" id="from" name="from" step="1" min="1" max="99" value="2" />
+            </div>
+            <div>
+                <label for="to">to:</label>
+                <input type="number" id="to" name="to" step="1" min="1" max="99" value="10" />
+            </div>
+
+        </div>
+        <div class="operation">
+            <div>
+                <input type="checkbox" id="add" name="add" checked />
+                <label for="add">+</label>
+            </div>
+            <div>
+                <input type="checkbox" id="minus" name="minus" checked />
+                <label for="minus">-</label>
+            </div>
+            <div>
+                <input type="checkbox" id="multiply" name="multiply" checked />
+                <label for="multiply">*</label>
+            </div>
+            <div>
+                <input type="checkbox" id="divide" name="divide" checked />
+                <label for="divide">/</label>
+            </div>
+        </div>
+
+
+        <button class="btn saveBtn" type="submit">Сохранить</button>
+
+    </form>
+
+    <div class="container">
+        <div class="primer">
+            <div class="first"></div>
+            <div class="argument"></div>
+            <div class="second"></div>
+            <div class="equal">=</div>
+            <div class="result"></div>
+        </div>
+
+        <div class="rez"></div>
+    </div>
+
+
+
+    <script type="module" src="script.js"></script>
+
+</body>
+
+</html>
