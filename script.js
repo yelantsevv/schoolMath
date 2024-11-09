@@ -66,6 +66,7 @@ rez.addEventListener("mouseup", (e) => {
   flag = true;
   if (e.target.textContent == answer) {
     [first, second, argument, result][r].innerHTML = e.target.textContent;
+    time = 11
     setTimeout(() => {
       flag = false;
       [first, second, argument, result][r].classList.remove("active");
@@ -128,3 +129,16 @@ counter.addEventListener("click", () => {
   localStorage.setItem("counter", 0);
   counter.textContent = localStorage.getItem("counter");
 });
+
+// // - --  - -- - - - - - timer
+
+// const timer = document.querySelector(".timer");
+// let time = 10;
+// const interval = setInterval(() => {
+//   time--;
+//   if (time < 0) {
+//     time = 10;
+//     count(false);
+//   }
+//   timer.textContent = time;
+// }, 1000);
