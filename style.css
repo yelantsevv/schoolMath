@@ -128,8 +128,7 @@ input {
   z-index: 2;
   top: 0;
   right: 0;
-  width: 5rem;
-  height: 5rem;
+  padding: 0 1rem;
   background: #dfdfdf;
   border-radius: 0 0 0 3rem;
   font-size: 4rem;
