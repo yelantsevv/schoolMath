@@ -11,12 +11,43 @@ const btn_check = document.querySelector(".btn_check");
 const inputs_form = document.querySelector(".inputs_form");
 let answer;
 let r;
+let flag = false;
+
 const start = { from: 2, to: 10, argument: ["+", "-", "*", "/"] };
 
 const random = (x, y) => Math.floor(Math.random() * (y - x + 1)) + x;
 
 const active = (arg, className) => {
     [first, second, argument, result][r].classList[arg](className);
+};
+const resultActive = (arg = "") => {
+    [first, second, argument, result][r].innerHTML = arg;
+};
+const correctAnswer = (e) => {
+    resultActive(e);
+    setTimeout(() => {
+        flag = false;
+        active("remove", "active");
+        varify();
+        results();
+        inp.value = "";
+        rez.classList.add("hidden");
+        inputs_form.classList.remove("hidden");
+        inp.focus();
+    }, 1000);
+};
+
+const wrongAnswer = (e) => {
+    resultActive(e);
+    active("add", "error");
+    setTimeout(() => {
+        flag = false;
+        resultActive();
+        active("remove", "error");
+        results();
+    }, 1000);
+    rez.classList.remove("hidden");
+    inputs_form.classList.add("hidden");
 };
 
 const arg = {
@@ -69,42 +100,22 @@ function results() {
                 `;
 }
 
-let flag = false;
 rez.addEventListener("mouseup", (e) => {
     if (flag) return;
     flag = true;
     if (e.target.textContent == answer) {
-        [first, second, argument, result][r].innerHTML = e.target.textContent;
-        setTimeout(() => {
-            flag = false;
-            active("remove", "active");
-            varify();
-            results();
-            inp.value = "";
-            // count(true);
-            rez.classList.add("hidden");
-            inputs_form.classList.remove("hidden");
-            inp.focus();
-        }, 1000);
+        correctAnswer(e.target.textContent);
     } else {
-        [first, second, argument, result][r].innerHTML = e.target.textContent;
-        active("add", "error");
-        setTimeout(() => {
-            flag = false;
-            [first, second, argument, result][r].innerHTML = "";
-            active("remove", "error");
-            results();
-            count(false);
-        }, 1000);
+        wrongAnswer(e.target.textContent);
+        count(false);
     }
 });
-
-// - - - - - - - - - - - -
 
 settings.addEventListener("click", (event) => {
     event.preventDefault();
     form.classList.toggle("hidden");
 });
+
 saveBtn.addEventListener("click", (event) => {
     event.preventDefault();
     const [a, b, c, d, e, f] = [...event.target.parentElement];
@@ -139,29 +150,25 @@ counter.addEventListener("click", () => {
 
 //-------- форма ответа --------
 
+const checkInput = () => {
+    if (inp.value == answer) {
+        correctAnswer(inp.value);
+        count(true);
+    } else {
+        wrongAnswer(inp.value);
+        count(false);
+    }
+    inp.focus();
+};
+
 inp.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
         e.preventDefault();
-        btn_check.click();
+        checkInput(e.target.value);
     }
 });
-btn_check.addEventListener("click", () => {
-    if (inp.value == answer) {
-        active("remove", "active");
-        results();
-        varify();
-        count(true);
-        inp.value = "";
-        inp.focus();
-        rez.classList.add("hidden");
-    } else {
-        results();
-        count(false);
-        inp.focus();
-        rez.classList.remove("hidden");
-        inputs_form.classList.add("hidden");
-    }
-});
+
+btn_check.addEventListener("click", checkInput);
 
 varify();
 results();
