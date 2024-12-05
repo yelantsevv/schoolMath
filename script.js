@@ -3,6 +3,12 @@ const second = document.querySelector(".second");
 const argument = document.querySelector(".argument");
 const result = document.querySelector(".result");
 const rez = document.querySelector(".rez");
+const settings = document.querySelector(".settings");
+const saveBtn = document.querySelector(".saveBtn");
+const form = document.querySelector("form");
+const inp = document.querySelector(".inp");
+const btn_check = document.querySelector(".btn_check");
+const inputs_form = document.querySelector(".inputs_form");
 let answer;
 let r;
 const start = { from: 2, to: 10, argument: ["+", "-", "*", "/"] };
@@ -75,9 +81,10 @@ rez.addEventListener("mouseup", (e) => {
             varify();
             results();
             inp.value = "";
-            inp.focus();
             // count(true);
             rez.classList.add("hidden");
+            inputs_form.classList.remove("hidden");
+            inp.focus();
         }, 1000);
     } else {
         [first, second, argument, result][r].innerHTML = e.target.textContent;
@@ -91,13 +98,8 @@ rez.addEventListener("mouseup", (e) => {
         }, 1000);
     }
 });
-varify();
-results();
-// - - - - - - - - - - - -
 
-const settings = document.querySelector(".settings");
-const saveBtn = document.querySelector(".saveBtn");
-const form = document.querySelector("form");
+// - - - - - - - - - - - -
 
 settings.addEventListener("click", (event) => {
     event.preventDefault();
@@ -136,20 +138,15 @@ counter.addEventListener("click", () => {
 });
 
 //-------- форма ответа --------
-const inp = document.querySelector(".inp");
-const btn_check = document.querySelector(".btn_check");
+
 inp.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
         e.preventDefault();
-        btn_check.click();
     }
 });
 btn_check.addEventListener("click", (e) => {
-    e.preventDefault();
-    console.log(inp.value, answer);
     if (inp.value == answer) {
         active("remove", "active");
-
         results();
         varify();
         count(true);
@@ -161,5 +158,9 @@ btn_check.addEventListener("click", (e) => {
         count(false);
         inp.focus();
         rez.classList.remove("hidden");
+        inputs_form.classList.add("hidden");
     }
 });
+
+varify();
+results();
