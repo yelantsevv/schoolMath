@@ -142,9 +142,10 @@ counter.addEventListener("click", () => {
 inp.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
         e.preventDefault();
+        btn_check.click();
     }
 });
-btn_check.addEventListener("click", (e) => {
+btn_check.addEventListener("click", () => {
     if (inp.value == answer) {
         active("remove", "active");
         results();
